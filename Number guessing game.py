@@ -13,8 +13,7 @@ while attempts>0:
             print("Try higher!!")
         else:
             print("Try lower!!")
-    
+
     attempts -= 1
 if attempts == 0:
         print("Game over! You've used all your attempts. The secret number was:", secret_number)
-    

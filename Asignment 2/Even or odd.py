@@ -8,3 +8,5 @@ else:
 If the number is divisible by 2 with no remainder, 
 it is classified as even; otherwise, it is classified as odd.
  The result is then printed to the user.'''
+s = "python"
+print(s[1:5])
