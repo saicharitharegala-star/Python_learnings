@@ -1,0 +1,3 @@
+Hello there , in this repo I'll be updating my learnings about python every now and then , to keep track of how far I've come in this journey of upskilling.
+Each and every assignment and python files contain exercises which are beginner friendly as well as challenging....if you're someone interested in learning python and building amazing projects...
+YOU'RE WELCOME TO MY REPO OF PYTHON 
