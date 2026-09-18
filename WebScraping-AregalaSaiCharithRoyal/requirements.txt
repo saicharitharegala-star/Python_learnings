@@ -1,0 +1,2 @@
+# This project only uses Python's built-in libraries.
+# No packages need to be installed before running web_scraper.py.

@@ -1,6 +1,14 @@
 # Django REST API – Blog Post Management
 
-This project is a small REST API assignment built with Django REST Framework. A signed-in user can create, read, update, and delete only their own blog posts.
+This is a simple blog REST API made with Django REST Framework. A signed-in user can create, read, update, and delete only their own blog posts.
+
+## How the project works
+
+* `BlogPost` in `helloworld/models.py` stores a title, content, author, and dates.
+* `serializers.py` changes a blog post into JSON.
+* `views.py` has one view for listing/creating posts and another for viewing, editing, or deleting one post.
+* `permissions.py` makes sure a user can only change their own post.
+* `filters.py` allows filtering by the date a post was created.
 
 ## Setup
 
