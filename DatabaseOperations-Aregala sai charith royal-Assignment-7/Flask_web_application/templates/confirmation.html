@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registration Confirmed</title>
+  <style>
+    body { background: #f4f7fb; color: #1f2937; font-family: Arial, sans-serif; margin: 0; }
+    main { background: #fff; border-radius: 12px; box-shadow: 0 8px 24px #1f29371a; margin: 5rem auto; max-width: 430px; padding: 2rem; }
+    h1 { color: #15803d; margin-top: 0; }
+    dl { line-height: 1.6; }
+    dt { font-weight: bold; margin-top: .8rem; }
+    dd { margin-left: 0; }
+    a { color: #1d4ed8; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Registration Confirmed</h1>
+    <p>Thank you! Your submitted details are:</p>
+    <dl>
+      <dt>Name</dt><dd>{{ name }}</dd>
+      <dt>City</dt><dd>{{ city }}</dd>
+      <dt>Phone Number</dt><dd>{{ phone }}</dd>
+    </dl>
+    <p><a href="{{ url_for('register') }}">Register another user</a></p>
+  </main>
+</body>
+</html>
