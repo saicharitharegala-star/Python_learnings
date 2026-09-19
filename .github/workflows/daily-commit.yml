@@ -1,0 +1,57 @@
+name: Daily Python Learnings Log
+
+on:
+  schedule:
+    # Runs daily at 20:00 UTC = 00:00 Dubai (UTC+4)
+    - cron: '0 20 * * *'
+  workflow_dispatch: # lets you test manually from the Actions tab
+
+jobs:
+  daily-entry:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Create or update DAILY_LOG.md
+        run: |
+          TODAY=$(date -u +"%Y-%m-%d")
+          FILE="DAILY_LOG.md"
+
+          # If file doesn't exist, create with header
+          if [ ! -f "$FILE" ]; then
+            cat > "$FILE" <<'EOF'
+# Daily Python Learnings Log
+
+This file is updated automatically every day to track consistent learning activity in Python.
+
+EOF
+          fi
+
+          # Add today's section if it doesn't exist
+          if ! grep -q "^## ${TODAY}$" "$FILE"; then
+            cat >> "$FILE" <<EOF
+
+## ${TODAY}
+
+- Topic practiced:
+- Code written / concept explored:
+- Key takeaway:
+- Next step:
+EOF
+          fi
+
+      - name: Commit and push
+        run: |
+          git add DAILY_LOG.md
+          git diff --staged --quiet || \
+            git commit -m "chore: daily Python learning entry for $(date -u +"%Y-%m-%d") [skip ci]"
+          git push
