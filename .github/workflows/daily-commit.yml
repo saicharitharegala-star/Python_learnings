@@ -28,30 +28,20 @@ jobs:
 
           # If file doesn't exist, create with header
           if [ ! -f "$FILE" ]; then
-            cat > "$FILE" <<'EOF'
-# Daily Python Learnings Log
-
-This file is updated automatically every day to track consistent learning activity in Python.
-
-EOF
+            printf "# Daily Python Learnings Log\n\nThis file is updated automatically every day to track consistent learning activity in Python.\n\n" > "$FILE"
           fi
 
           # Add today's section if it doesn't exist
           if ! grep -q "^## ${TODAY}$" "$FILE"; then
-            cat >> "$FILE" <<EOF
-
-## ${TODAY}
-
-- Topic practiced:
-- Code written / concept explored:
-- Key takeaway:
-- Next step:
-EOF
+            printf "\n## %s\n\n- Topic practiced:\n- Code written / concept explored:\n- Key takeaway:\n- Next step:\n" "$TODAY" >> "$FILE"
           fi
 
       - name: Commit and push
         run: |
           git add DAILY_LOG.md
-          git diff --staged --quiet || \
+          if ! git diff --staged --quiet; then
             git commit -m "chore: daily Python learning entry for $(date -u +"%Y-%m-%d") [skip ci]"
-          git push
+            git push
+          else
+            echo "No changes to commit"
+          fi
